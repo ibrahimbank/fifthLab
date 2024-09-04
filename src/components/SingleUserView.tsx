@@ -17,6 +17,8 @@ import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined
 import Pagination from "@/components/Pagination";
 import {User} from "@/Types";
 import UserCard from "@/components/UserCard";
+// @ts-ignore
+import {Fade} from "react-reveal"
 
 const IOSSwitch = styled((props) => (
     <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -156,7 +158,9 @@ function SingleUserView({selectedUser,setSelect, setSearchQuery, country, setCou
                         </FormGroup>
                     </Stack>
                     <Grid item xs={12} sm={12} md={12} >
-                        <UserCard user={selectedUser} setSelect={setSelect}/>
+                      <Fade>
+                          <UserCard user={selectedUser} setSelect={setSelect}/>
+                      </Fade>
                     </Grid>
 
                 </Grid>

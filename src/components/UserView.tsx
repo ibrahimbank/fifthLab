@@ -8,7 +8,7 @@ import {
     Grid,
     MenuItem,
     Select,
-    Stack, styled, Switch,
+    Stack, styled, Switch, TextField,
     Typography
 } from "@mui/material";
 import SearchBar from "@/components/SearchBar";
@@ -16,6 +16,8 @@ import CardComponent from "@/components/Card";
 import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
 import Pagination from "@/components/Pagination";
 import {User} from "@/Types";
+// @ts-ignore
+import {Fade} from 'react-reveal'
 
 const IOSSwitch = styled((props) => (
     <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -123,8 +125,12 @@ function UserView({setFilteredUsers,users, setSelect,setSelectedUser,setSearchQu
 
                         <FormControl fullWidth variant="outlined" style={{margin: '20px 0'}}>
 
-                            <Select
+                            <TextField
+                                select
                                 value={country}
+                                SelectProps={{
+                                    native: true,
+                                }}
                                 onChange={(e) => {
                                     setCountry(e.target.value as string)
                                     const filtered = users.filter(user =>
@@ -132,11 +138,13 @@ function UserView({setFilteredUsers,users, setSelect,setSelectedUser,setSearchQu
                                     );
                                     setFilteredUsers(filtered);
                                 }}
+                                placeholder={'Country'}
                                 variant={"outlined"}
                                 sx={{
                                     borderRadius: "30px",
                                     background: 'rgba(0, 0, 0, .06)',
                                     boxShadow: "none",
+                                    border: 'none', "& fieldset": { border: 'none !important' },
                                     ".MuiOutlinedInput-notchedOutline": {border: 0},
                                     "&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
                                         {
@@ -147,14 +155,15 @@ function UserView({setFilteredUsers,users, setSelect,setSelectedUser,setSearchQu
                                             border: 0,
                                         },
                                 }}
+
                             >
-                                <MenuItem value="Country">Country</MenuItem>
+                                <option value="Country">Country</option>
                                 {countries.map(country => (
-                                    <MenuItem key={country} value={country}>
+                                    <option key={country} value={country}>
                                         {country}
-                                    </MenuItem>
+                                    </option>
                                 ))}
-                            </Select>
+                            </TextField>
                         </FormControl>
 
                         <FormGroup>
@@ -165,8 +174,11 @@ function UserView({setFilteredUsers,users, setSelect,setSelectedUser,setSearchQu
                     </Stack>
                     {filteredUsers.map(user => (
                         <Grid item xs={12} sm={12} md={12} key={user.login.uuid}>
-                            <CardComponent setSelectedUser={setSelectedUser} setSelect={setSelect} user={user} showCountry={showCountry} setShowCountry={setShowCountry}/>
-                        </Grid>
+                            <Fade >
+                                <CardComponent setSelectedUser={setSelectedUser} setSelect={setSelect} user={user} showCountry={showCountry} setShowCountry={setShowCountry}/>
+
+                            </Fade>
+                          </Grid>
                     ))}
                 </Grid>
 

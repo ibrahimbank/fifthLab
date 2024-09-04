@@ -19,7 +19,7 @@ const TypographyStyle = styled(Typography)(
    background: rgb(247, 217, 242);
    border-radius: 30px;
    padding: .5rem;
-   width: 60%
+  
 `
 );
 
@@ -36,7 +36,7 @@ const TypographyEmailStyle = styled(Typography)(
    background: rgba(0, 0, 0, .12);
    border-radius: 30px;
    padding: .5rem;
-    width: 60%
+
 `
 );
 
@@ -44,12 +44,12 @@ const TypographyEmailStyle = styled(Typography)(
 
 function UserCard({user,setSelect}: {user: User,  setSelect: React.Dispatch<React.SetStateAction<boolean>>;}) {
     return (
-     <Stack spacing={2} mb={4} width={"100%"}>
+     <Stack  spacing={2} mb={4} width={"100%"}>
          <Typography sx={{cursor:"pointer", display: "flex", alignItems:"center"}} variant="h4" fontWeight={400}
                      fontSize={14} onClick={()=>{
              setSelect(false)
          }} ><ArrowBackIcon sx={{color:"rgb(117, 214, 209)"}}/> RESULTS</Typography>
-     <Stack direction={"row"} spacing={2} width={"100%"}>
+     <Stack direction={{xs:"column", lg:"row"}} spacing={2} width={"100%"}>
          <Box width={200} height={200} >
              <Image width={200} height={200} style={{borderRadius: "100%", border: "6px solid rgb(117, 214, 209)"}}
                     src={user.picture.large} alt={`${user.name.first} ${user.name.last}`}/>
@@ -64,11 +64,11 @@ function UserCard({user,setSelect}: {user: User,  setSelect: React.Dispatch<Reac
              <Typography variant="subtitle2" fontWeight={400}
                          fontSize={15}><i>{user.location?.street?.number}, {user.location?.street?.name} {user.location.country}</i></Typography>
 
-             <TypographyEmailStyle variant="subtitle2" fontWeight={600} fontSize={12}>
+             <TypographyEmailStyle sx={{width: {xs: "100%", lg:"60%"}}} variant="subtitle2" fontWeight={600} fontSize={12}>
                  <MailOutlineOutlinedIcon sx={{fontSize: "18px", color: 'rgba(0, 0, 0, .26)'}}
                  /> {user.email}</TypographyEmailStyle>
 
-             <TypographyStyle variant="subtitle2" fontWeight={600} fontSize={12}>
+             <TypographyStyle sx={{width: {xs: "100%", lg:"60%"}}} variant="subtitle2" fontWeight={600} fontSize={12}>
 
               JOINED: {(user.registered.date)}</TypographyStyle>
          </Stack>
