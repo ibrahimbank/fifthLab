@@ -6,8 +6,6 @@ import {
     FormControlLabel,
     FormGroup,
     Grid,
-    MenuItem,
-    Select,
     Stack, styled, Switch, TextField,
     Typography
 } from "@mui/material";
